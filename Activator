@@ -16,3 +16,80 @@ giftCardsApi.createGiftCardAsync(body)
     System.out.println(String.format("Exception: %s", exception.getMessage()));
     return null;
   });
+{
+  "gift_card": {
+    "id": "gftc:01696eaf3d5141bfb4c7869494257bb6",
+    "type": "DIGITAL",
+    "gan_source": "SQUARE",
+    "state": "PENDING",
+    "balance_money": {
+      "amount": 0,
+      "currency": "USD"
+    },
+    "gan": "7783320005719034",
+    "created_at": "2021-04-11T20:31:43Z"
+  }
+}Money amountMoney = new Money.Builder()
+  .amount(2500L)
+  .currency("USD")
+  .build();
+
+LinkedList<String> buyerPaymentInstrumentIds = new LinkedList<>();
+buyerPaymentInstrumentIds.add("card-id-1");
+buyerPaymentInstrumentIds.add("card-id-2");
+
+GiftCardActivityActivate activateActivityDetails = new GiftCardActivityActivate.Builder()
+  .amountMoney(amountMoney)
+  .referenceId("client-side-payment-id")
+  .buyerPaymentInstrumentIds(buyerPaymentInstrumentIds)
+  .build();
+
+GiftCardActivity giftCardActivity = new GiftCardActivity.Builder("ACTIVATE", "{LOCATION_ID}")
+  .giftCardId("{GIFT_CARD_ID}")
+  .activateActivityDetails(activateActivityDetails)
+  .build();
+
+CreateGiftCardActivityRequest body = new CreateGiftCardActivityRequest.Builder("{UNIQUE_KEY}", giftCardActivity)
+  .build();
+
+giftCardActivitiesApi.createGiftCardActivityAsync(body)
+  .thenAccept(result -> {
+    System.out.println("Success!");
+  })
+  .exceptionally(exception -> {
+    System.out.println("Failed to make the request");
+    System.out.println(String.format("Exception: %s", exception.getMessage()));
+    return null;
+  });
+Money amountMoney = new Money.Builder()
+  .amount(2500L)
+  .currency("USD")
+  .build();
+
+LinkedList<String> buyerPaymentInstrumentIds = new LinkedList<>();
+buyerPaymentInstrumentIds.add("card-id-1");
+buyerPaymentInstrumentIds.add("card-id-2");
+
+GiftCardActivityActivate activateActivityDetails = new GiftCardActivityActivate.Builder()
+  .amountMoney(amountMoney)
+  .referenceId("client-side-payment-id")
+  .buyerPaymentInstrumentIds(buyerPaymentInstrumentIds)
+  .build();
+
+GiftCardActivity giftCardActivity = new GiftCardActivity.Builder("ACTIVATE", "{LOCATION_ID}")
+  .giftCardId("{GIFT_CARD_ID}")
+  .activateActivityDetails(activateActivityDetails)
+  .build();
+
+CreateGiftCardActivityRequest body = new CreateGiftCardActivityRequest.Builder("{UNIQUE_KEY}", giftCardActivity)
+  .build();
+
+giftCardActivitiesApi.createGiftCardActivityAsync(body)
+  .thenAccept(result -> {
+    System.out.println("Success!");
+  })
+  .exceptionally(exception -> {
+    System.out.println("Failed to make the request");
+    System.out.println(String.format("Exception: %s", exception.getMessage()));
+    return null;
+  });p
