@@ -1,0 +1,18 @@
+GiftCard giftCard = new GiftCard.Builder("DIGITAL")
+  .build();
+
+CreateGiftCardRequest body = new CreateGiftCardRequest.Builder(
+    "{UNIQUE_KEY}",
+    "{LOCATION_ID}",
+    giftCard)
+  .build();
+
+giftCardsApi.createGiftCardAsync(body)
+  .thenAccept(result -> {
+    System.out.println("Success!");
+  })
+  .exceptionally(exception -> {
+    System.out.println("Failed to make the request");
+    System.out.println(String.format("Exception: %s", exception.getMessage()));
+    return null;
+  });
